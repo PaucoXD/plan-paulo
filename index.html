@@ -22,6 +22,13 @@
   --nav-h:60px;
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
+/* MODO CLARO */
+body.light-mode {
+  --bg:#f8fafc; --bg2:#ffffff; --bg3:#f1f5f9;
+  --line:rgba(0,0,0,0.1);
+  --text:#0f172a; --muted:#64748b;
+}
+
 html{height:100%;overscroll-behavior:none}
 body{
   font-family:'DM Sans',sans-serif;
@@ -30,189 +37,116 @@ body{
   height:100%;
   overflow:hidden;
   display:flex;flex-direction:column;
+  transition: background 0.3s, color 0.3s;
 }
 
 /* ── HEADER ── */
 .header{
-  flex-shrink:0;
-  background:var(--bg2);
-  border-bottom:1px solid var(--line);
-  padding:14px 18px 12px;
-  padding-top:calc(14px + env(safe-area-inset-top, 0px));
+  flex-shrink:0;background:var(--bg2);border-bottom:1px solid var(--line);
+  padding:14px 18px 12px;padding-top:calc(14px + env(safe-area-inset-top, 0px));
   display:flex;align-items:center;justify-content:space-between;
 }
-.header-logo{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:22px;letter-spacing:0.06em;color:#fff;
-}
+.header-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.06em;color:var(--text);}
 .header-logo span{color:var(--green)}
-.header-tag{
-  font-size:11px;font-weight:500;
-  background:rgba(200,240,99,0.12);
-  color:var(--green);
-  padding:4px 10px;border-radius:20px;
-  letter-spacing:0.06em;
-}
+.theme-btn { background:none; border:none; color:var(--text); font-size:20px; cursor:pointer; }
 
 /* ── SCROLL AREA ── */
-.scroll-area{
-  flex:1;
-  overflow-y:auto;
-  overflow-x:hidden;
-  -webkit-overflow-scrolling:touch;
-  overscroll-behavior-y:contain;
-}
+.scroll-area{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior-y:contain;}
 
 /* ── BOTTOM NAV ── */
-.bottom-nav{
-  flex-shrink:0;
-  background:var(--bg2);
-  border-top:1px solid var(--line);
-  display:flex;
-  padding-bottom:var(--safe-bottom);
-}
-.bnav-item{
-  flex:1;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  padding:10px 4px 8px;
-  cursor:pointer;gap:3px;
-  transition:opacity 0.15s;
-  border:none;background:transparent;
-}
+.bottom-nav{flex-shrink:0;background:var(--bg2);border-top:1px solid var(--line);display:flex;padding-bottom:var(--safe-bottom);}
+.bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 4px 8px;cursor:pointer;gap:3px;border:none;background:transparent;}
 .bnav-icon{font-size:20px;line-height:1}
 .bnav-lbl{font-size:10px;font-weight:500;letter-spacing:0.04em;color:var(--muted);transition:color 0.2s}
 .bnav-item.active .bnav-lbl{color:var(--green)}
 .bnav-item.active .bnav-icon{filter:drop-shadow(0 0 6px rgba(200,240,99,0.6))}
 
-/* ── PAGES ── */
+/* ── PAGES & CARDS ── */
 .page{display:none;padding:20px 18px 32px}
 .page.active{display:block;animation:fadeUp 0.3s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-
-/* ── HERO CARD ── */
-.hero-card{
-  background:linear-gradient(135deg,#1a2012 0%,#0e1a0a 100%);
-  border:1px solid rgba(200,240,99,0.15);
-  border-radius:16px;padding:20px;margin-bottom:16px;
-  position:relative;overflow:hidden;
-}
-.hero-card::before{
-  content:'';position:absolute;top:-40px;right:-40px;
-  width:120px;height:120px;
-  background:radial-gradient(circle,rgba(200,240,99,0.15) 0%,transparent 70%);
-}
+.hero-card{background:linear-gradient(135deg,#1a2012 0%,#0e1a0a 100%);border:1px solid rgba(200,240,99,0.15);border-radius:16px;padding:20px;margin-bottom:16px;position:relative;overflow:hidden;}
 .hero-name{font-family:'Bebas Neue',sans-serif;font-size:38px;color:#fff;letter-spacing:0.04em;line-height:1;margin-bottom:4px}
 .hero-name span{color:var(--green)}
-.hero-sub{font-size:12px;color:var(--muted);margin-bottom:16px}
+.hero-sub{font-size:12px;color:rgba(255,255,255,0.7);margin-bottom:16px}
 .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .hstat{background:rgba(0,0,0,0.3);border-radius:10px;padding:10px 12px}
 .hstat-val{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:0.04em;line-height:1;margin-bottom:1px}
-.hstat-lbl{font-size:10px;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase}
-
-/* ── SECTION TITLE ── */
+.hstat-lbl{font-size:10px;color:rgba(255,255,255,0.7);letter-spacing:0.06em;text-transform:uppercase}
 .sec-eyebrow{font-size:10px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--green);margin-bottom:4px}
-.sec-h{font-family:'Bebas Neue',sans-serif;font-size:32px;color:#fff;letter-spacing:0.03em;line-height:1;margin-bottom:16px}
-
-/* ── CARDS ── */
+.sec-h{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:0.03em;line-height:1;margin-bottom:16px}
 .card{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin-bottom:12px}
 .card-lbl{font-size:10px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px}
 .card-big{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:0.04em;line-height:1}
 .c-green{color:var(--green)}.c-orange{color:var(--orange)}.c-red{color:var(--red)}.c-blue{color:var(--blue)}
-
 .stat-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
 
-/* ── MACRO BAR ── */
-.macro-wrap{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin-bottom:12px}
+/* ── MACRO BAR & MENU ── */
 .mbar{display:flex;height:8px;border-radius:4px;overflow:hidden;margin:10px 0 10px}
 .mb-p{background:var(--green)}.mb-c{background:var(--orange)}.mb-f{background:var(--red)}
 .mlegend{display:flex;flex-direction:column;gap:6px}
 .mleg-item{display:flex;align-items:center;gap:8px;font-size:13px}
 .mdot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.mleg-val{font-weight:500}.mleg-sub{color:var(--muted);font-size:12px;margin-left:auto}
-
-/* ── MENU CARDS ── */
+.mleg-val{font-weight:500}.mleg-sub{color:var(--muted);margin-left:auto}
 .menu-card{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);margin-bottom:12px;overflow:hidden}
 .menu-head{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--line)}
 .mico{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
-.mico-g{background:rgba(200,240,99,0.12)}
-.mico-o{background:rgba(240,160,48,0.12)}
-.mico-b{background:rgba(91,191,239,0.12)}
+.mico-g{background:rgba(200,240,99,0.12)}.mico-o{background:rgba(240,160,48,0.12)}.mico-b{background:rgba(91,191,239,0.12)}
 .menu-info{flex:1;min-width:0}
 .menu-time{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em}
 .menu-name{font-weight:500;font-size:14px;line-height:1.3}
-.menu-kcal{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--green);letter-spacing:0.04em;line-height:1;flex-shrink:0;text-align:right}
+.menu-kcal{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--green);letter-spacing:0.04em;line-height:1;text-align:right}
 .menu-kcal-sub{font-family:'DM Sans',sans-serif;font-size:10px;color:var(--muted);display:block;letter-spacing:0.06em}
 .menu-body{padding:14px 16px}
 .menu-ing{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:10px}
 .menu-macros{display:flex;gap:14px}
 .mm{font-size:12px}.mm strong{color:var(--text);font-weight:500}
-.menu-tip{font-size:12px;margin-top:10px;padding:10px 12px;background:rgba(200,240,99,0.05);border-left:2px solid var(--green);border-radius:0 6px 6px 0;color:#c0d0a0;line-height:1.5}
-.menu-tip.o{background:rgba(240,160,48,0.05);border-left-color:var(--orange);color:#d0c0a0}
-.menu-tip.b{background:rgba(91,191,239,0.05);border-left-color:var(--blue);color:#a0c0d0}
+.tip{border-left:3px solid var(--green);background:rgba(200,240,99,0.05);border-radius:0 8px 8px 0;padding:12px 14px;font-size:13px;line-height:1.6;margin:12px 0;}
+.tip.o{border-left-color:var(--orange);background:rgba(240,160,48,0.05);}
+.tip.b{border-left-color:var(--blue);background:rgba(91,191,239,0.05);}
 
-.menu-total{background:var(--bg3);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.mt-lbl{font-size:12px;color:var(--muted)}
-.mt-sub{font-size:11px;color:var(--muted);margin-top:2px}
-.mt-val{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--green);letter-spacing:0.04em;text-align:right}
-.mt-macros{font-size:11px;color:var(--muted);text-align:right;margin-top:2px}
+/* ── CHECKLIST INTERACTIVO ── */
+.interactive-list { list-style: none; padding: 0; margin-bottom: 16px; }
+.interactive-list li {
+  display: flex; align-items: flex-start; gap: 12px; padding: 12px;
+  background: var(--bg2); border: 1px solid var(--line); border-radius: 8px; margin-bottom: 8px;
+  cursor: pointer; transition: 0.2s;
+}
+.interactive-list input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--green); margin-top: 2px; }
+.interactive-list li.checked { opacity: 0.6; }
+.interactive-list li.checked span { text-decoration: line-through; color: var(--muted); }
 
-/* ── TIP ── */
-.tip{border-left:3px solid var(--green);background:rgba(200,240,99,0.05);border-radius:0 8px 8px 0;padding:12px 14px;font-size:13px;line-height:1.6;margin:12px 0;color:#c8d4b0}
-.tip.o{border-left-color:var(--orange);background:rgba(240,160,48,0.05);color:#d4c0a0}
-.tip.r{border-left-color:var(--red);background:rgba(224,85,64,0.05);color:#d4a8a0}
-.tip.b{border-left-color:var(--blue);background:rgba(91,191,239,0.05);color:#a0c8d4}
-
-/* ── DAY ROWS ── */
-.day-row{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);align-items:flex-start}
+/* ── DAY ROWS (CON HIGHLIGHT) ── */
+.day-row{display:flex;gap:14px;padding:14px 10px;border-bottom:1px solid var(--line);align-items:flex-start; border-radius: 8px;}
 .day-row:last-child{border-bottom:none}
 .day-tag{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:0.06em;width:46px;flex-shrink:0;line-height:1.2;margin-top:2px}
 .day-content{flex:1}
 .day-type{font-weight:500;font-size:14px;margin-bottom:3px}
 .day-detail{font-size:12px;color:var(--muted);line-height:1.6}
+.current-day { background: rgba(200,240,99,0.08); border-left: 4px solid var(--green); border-bottom: none; }
 
-/* ── TABLE ── */
+/* ── MINI WEIGHT TRACKER ── */
+.tracker-input { display: flex; gap: 8px; margin-bottom: 16px; }
+.tracker-input input { flex: 1; padding: 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--text); font-family: inherit; }
+.tracker-input button { background: var(--green); color: #000; border: none; padding: 0 20px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+#weight-list { list-style: none; }
+#weight-list li { display: flex; justify-content: space-between; padding: 12px; background: var(--bg2); border: 1px solid var(--line); border-radius: 8px; margin-bottom: 8px; font-size: 14px; }
+.del-btn { background: none; border: none; color: var(--red); cursor: pointer; font-weight: bold; }
+
+/* ── TABLAS & OTROS ── */
 .tbl-wrap{overflow-x:auto;margin-bottom:12px;border-radius:var(--r);border:1px solid var(--line)}
 table{width:100%;border-collapse:collapse;font-size:13px}
 th{text-align:left;font-size:10px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;padding:10px 12px;border-bottom:1px solid var(--line)}
 td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
 tr:last-child td{border-bottom:none}
-.td-b{font-weight:500}
-
-/* ── PILL ── */
 .pill{display:inline-block;font-size:11px;font-weight:500;padding:3px 9px;border-radius:20px}
 .p-g{background:rgba(200,240,99,0.12);color:var(--green)}
 .p-o{background:rgba(240,160,48,0.12);color:var(--orange)}
 .p-b{background:rgba(91,191,239,0.12);color:var(--blue)}
-
-/* ── CHECKLIST ── */
-.cklist{list-style:none;padding:0}
-.cklist li{padding:9px 0;font-size:13px;display:flex;gap:10px;align-items:flex-start;border-bottom:1px solid var(--line)}
-.cklist li:last-child{border-bottom:none}
-.cklist li::before{content:"✓";color:var(--green);font-weight:700;flex-shrink:0;margin-top:1px}
-
-/* ── WEEK CARDS ── */
-.week-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
-.week-card{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:14px}
-.week-num{font-family:'Bebas Neue',sans-serif;font-size:13px;color:var(--muted);letter-spacing:0.1em;margin-bottom:4px}
-.week-title{font-size:13px;font-weight:500;margin-bottom:4px}
-.week-desc{font-size:12px;color:var(--muted);line-height:1.5}
-
-/* ── ANTOJITOS ── */
 .antojo-card{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin-bottom:10px}
 .antojo-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 .antojo-name{font-weight:500;font-size:15px}
 .antojo-body{font-size:13px;color:var(--muted);line-height:1.6}
-
-/* ── INSTALL BANNER ── */
-.install-banner{
-  background:linear-gradient(135deg,rgba(200,240,99,0.1),rgba(200,240,99,0.05));
-  border:1px solid rgba(200,240,99,0.2);
-  border-radius:var(--r);padding:14px 16px;margin-bottom:16px;
-  display:flex;align-items:center;gap:12px;
-}
-.ib-icon{font-size:28px;flex-shrink:0}
-.ib-text{font-size:13px;color:#c8d4b0;line-height:1.5}
-.ib-text strong{color:var(--green)}
 </style>
 </head>
 <body>
@@ -220,10 +154,9 @@ tr:last-child td{border-bottom:none}
 <!-- HEADER -->
 <header class="header">
   <div class="header-logo">PLAN <span>PAULO</span></div>
-  <div class="header-tag">EN PROGRESO</div>
+  <button class="theme-btn" onclick="toggleTheme()" id="themeIcon">☀️</button>
 </header>
 
-<!-- SCROLL AREA -->
 <main class="scroll-area" id="scrollArea">
 
   <!-- ── HOME ── -->
@@ -239,35 +172,28 @@ tr:last-child td{border-bottom:none}
       </div>
     </div>
 
-    <div class="install-banner">
-      <div class="ib-icon">📲</div>
-      <div class="ib-text"><strong>Instala como app:</strong> en Safari toca "Compartir" → "Añadir a inicio". En Chrome: menú ⋮ → "Añadir a pantalla de inicio".</div>
-    </div>
-
-    <div class="sec-eyebrow">Las 5 reglas</div>
+    <div class="sec-eyebrow">Tus Tareas Diarias</div>
     <h2 class="sec-h">GOLDEN RULES</h2>
-    <ul class="cklist">
-      <li>Come 150–190 g de proteína todos los días, sin excepción</li>
-      <li>Entrena con progresión: más peso o reps cada semana</li>
-      <li>Sueño de 7–8 h vale más que cualquier suplemento</li>
-      <li>La grasa abdominal es la última en irse — sé paciente</li>
-      <li>Un día libre por semana no arruina nada si el resto es constante</li>
+    <ul class="interactive-list" id="rulesList">
+      <li><input type="checkbox" id="rule1"> <span>Comí mis 150–190g de proteína hoy.</span></li>
+      <li><input type="checkbox" id="rule2"> <span>Cumplí mi déficit (aprox 2,100 kcal).</span></li>
+      <li><input type="checkbox" id="rule3"> <span>Dormiré mis 7-8 horas esta noche.</span></li>
+      <li><input type="checkbox" id="rule4"> <span>Entrené / Hice mi cardio o reta de fútbol.</span></li>
     </ul>
 
-    <div class="tip" style="margin-top:16px">
-      Toca las pestañas de abajo para ver tu menú, entrenamiento, medidas y guía de antojitos.
+    <div class="tip">
+      Toca las casillas al terminar tu día. El navegador las guardará. Toca las pestañas de abajo para navegar.
     </div>
   </div>
 
   <!-- ── NUTRICIÓN ── -->
   <div class="page" id="page-nutri">
-
     <div class="stat-row">
       <div class="card"><div class="card-lbl">Objetivo/día</div><div class="card-big c-green">2,100</div><div style="font-size:11px;color:var(--muted);margin-top:2px">kcal</div></div>
       <div class="card"><div class="card-lbl">Pérdida est.</div><div class="card-big c-blue">~0.5</div><div style="font-size:11px;color:var(--muted);margin-top:2px">kg/semana</div></div>
     </div>
-
-    <div class="macro-wrap">
+    
+    <div class="card">
       <div class="card-lbl">Macros diarios · 2,100 kcal</div>
       <div class="mbar">
         <div class="mb-p" style="width:36%"></div>
@@ -275,9 +201,9 @@ tr:last-child td{border-bottom:none}
         <div class="mb-f" style="width:24%"></div>
       </div>
       <div class="mlegend">
-        <div class="mleg-item"><div class="mdot" style="background:var(--green)"></div><span>Proteína</span><span class="mleg-val c-green" style="margin-left:6px">189 g</span><span class="mleg-sub">36%</span></div>
-        <div class="mleg-item"><div class="mdot" style="background:var(--orange)"></div><span>Carbohidratos</span><span class="mleg-val c-orange" style="margin-left:6px">210 g</span><span class="mleg-sub">40%</span></div>
-        <div class="mleg-item"><div class="mdot" style="background:var(--red)"></div><span>Grasas</span><span class="mleg-val c-red" style="margin-left:6px">56 g</span><span class="mleg-sub">24%</span></div>
+        <div class="mleg-item"><div class="mdot" style="background:var(--green)"></div><span>Proteína</span><span class="mleg-val c-green" style="margin-left:6px">189 g</span></div>
+        <div class="mleg-item"><div class="mdot" style="background:var(--orange)"></div><span>Carbohidratos</span><span class="mleg-val c-orange" style="margin-left:6px">210 g</span></div>
+        <div class="mleg-item"><div class="mdot" style="background:var(--red)"></div><span>Grasas</span><span class="mleg-val c-red" style="margin-left:6px">56 g</span></div>
       </div>
     </div>
 
@@ -287,241 +213,156 @@ tr:last-child td{border-bottom:none}
     <div class="menu-card">
       <div class="menu-head">
         <div class="mico mico-g">🍳</div>
-        <div class="menu-info">
-          <div class="menu-time">Desayuno · 7–8 am</div>
-          <div class="menu-name">Huevos + avena + fruta</div>
-        </div>
-        <div><div class="menu-kcal">680<span class="menu-kcal-sub">kcal</span></div></div>
+        <div class="menu-info"><div class="menu-time">Desayuno · 7–8 am</div><div class="menu-name">Huevos + avena + fruta</div></div>
       </div>
       <div class="menu-body">
         <div class="menu-ing">3 huevos · 80 g avena con agua · 1 plátano o manzana · 1 vaso de agua o leche</div>
         <div class="menu-macros">
           <div class="mm"><strong>45g</strong> <span style="color:var(--muted)">pro</span></div>
           <div class="mm"><strong>75g</strong> <span style="color:var(--muted)">carb</span></div>
-          <div class="mm"><strong>18g</strong> <span style="color:var(--muted)">grasas</span></div>
         </div>
-        <div class="menu-tip">💡 <strong>~$25–35 MXN</strong> · Avena en 3 min microondas</div>
       </div>
     </div>
 
     <div class="menu-card">
       <div class="menu-head">
         <div class="mico mico-o">🍗</div>
-        <div class="menu-info">
-          <div class="menu-time">Comida · 1–3 pm · la más importante</div>
-          <div class="menu-name">Pollo + arroz + frijoles + verdura</div>
-        </div>
-        <div><div class="menu-kcal">870<span class="menu-kcal-sub">kcal</span></div></div>
+        <div class="menu-info"><div class="menu-time">Comida · 1–3 pm</div><div class="menu-name">Pollo + arroz + frijoles + verdura</div></div>
       </div>
       <div class="menu-body">
-        <div class="menu-ing">200 g pechuga o pierna · 150 g arroz cocido · ½ taza frijoles de olla · ensalada o verdura al gusto</div>
+        <div class="menu-ing">200 g pechuga/pierna · 150 g arroz cocido · ½ taza frijoles · ensalada</div>
         <div class="menu-macros">
           <div class="mm"><strong>80g</strong> <span style="color:var(--muted)">pro</span></div>
           <div class="mm"><strong>90g</strong> <span style="color:var(--muted)">carb</span></div>
-          <div class="mm"><strong>18g</strong> <span style="color:var(--muted)">grasas</span></div>
         </div>
-        <div class="menu-tip o">💡 <strong>~$40–60 MXN</strong> · Puede ser de fonda o mercado, no tienes que cocinar</div>
       </div>
     </div>
 
     <div class="menu-card">
       <div class="menu-head">
         <div class="mico mico-b">🐟</div>
-        <div class="menu-info">
-          <div class="menu-time">Cena · 7–9 pm · rápida y ligera</div>
-          <div class="menu-name">Atún + tortillas + aguacate</div>
-        </div>
-        <div><div class="menu-kcal">560<span class="menu-kcal-sub">kcal</span></div></div>
+        <div class="menu-info"><div class="menu-time">Cena · 7–9 pm</div><div class="menu-name">Atún + tortillas + aguacate</div></div>
       </div>
       <div class="menu-body">
-        <div class="menu-ing">2 latas atún en agua · 3 tortillas maíz · ¼ aguacate · jitomate y cebolla · limón y sal</div>
+        <div class="menu-ing">2 latas atún en agua · 3 tortillas maíz · ¼ aguacate · jitomate, cebolla y limón</div>
         <div class="menu-macros">
           <div class="mm"><strong>55g</strong> <span style="color:var(--muted)">pro</span></div>
           <div class="mm"><strong>40g</strong> <span style="color:var(--muted)">carb</span></div>
-          <div class="mm"><strong>18g</strong> <span style="color:var(--muted)">grasas</span></div>
         </div>
-        <div class="menu-tip b">💡 <strong>~$25–40 MXN</strong> · Listo en 5 minutos, sin cocinar</div>
       </div>
-    </div>
-
-    <div class="menu-total">
-      <div><div class="mt-lbl">Total del día</div><div class="mt-sub">~$90–135 MXN</div></div>
-      <div><div class="mt-val">2,110</div><div class="mt-macros">180g pro · 205g carb · 54g grasas</div></div>
-    </div>
-
-    <div class="tip">
-      <strong>Si tienes más hambre:</strong> añade un huevo duro extra o una tortilla más. No llegues a la cama con hambre intensa — eso sube el cortisol y dificulta la pérdida de grasa.
     </div>
   </div>
 
   <!-- ── ENTRENO ── -->
   <div class="page" id="page-entreno">
-    <div class="sec-eyebrow">Semana tipo</div>
+    <div class="sec-eyebrow">Tu semana de acción</div>
     <h2 class="sec-h">PLAN DE ENTRENO</h2>
+    <p style="font-size: 13px; color: var(--muted); margin-bottom: 15px;">Tu rutina de hoy está resaltada automáticamente.</p>
 
-    <div style="background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:4px 16px;margin-bottom:16px">
-      <div class="day-row">
+    <div class="card" style="padding: 4px;">
+      <div class="day-row" data-day="1">
         <div class="day-tag c-blue">LUN</div>
         <div class="day-content">
           <div class="day-type">Empuje + Core</div>
           <div class="day-detail">Press banca · Press hombro · Fondos · Extensiones tríceps<br><span style="color:var(--green)">Core:</span> Plancha 3×45s · Ab wheel 3×10</div>
         </div>
       </div>
-      <div class="day-row">
+      <div class="day-row" data-day="2">
         <div class="day-tag c-green">MAR</div>
         <div class="day-content">
           <div class="day-type">⚽ Fútbol o HIIT</div>
-          <div class="day-detail">60 min partido <strong>o</strong> sprints 20s/40s × 10–12 rondas</div>
+          <div class="day-detail">60 min partido <strong>o</strong> sprints 20s/40s × 10 rondas</div>
         </div>
       </div>
-      <div class="day-row">
+      <div class="day-row" data-day="3">
         <div class="day-tag c-blue">MIÉ</div>
         <div class="day-content">
           <div class="day-type">Jale + Core</div>
           <div class="day-detail">Dominadas · Remo barra · Curl bíceps · Face pulls<br><span style="color:var(--green)">Core:</span> Leg raises 3×15 · Dead bug 3×10</div>
         </div>
       </div>
-      <div class="day-row">
+      <div class="day-row" data-day="4">
         <div class="day-tag" style="color:var(--muted)">JUE</div>
         <div class="day-content">
           <div class="day-type" style="color:var(--muted)">Descanso activo</div>
           <div class="day-detail">Caminata 30 min o movilidad</div>
         </div>
       </div>
-      <div class="day-row">
+      <div class="day-row" data-day="5">
         <div class="day-tag c-blue">VIE</div>
         <div class="day-content">
           <div class="day-type">Piernas + Core</div>
-          <div class="day-detail">Sentadilla · Peso muerto rumano · Prensa · Zancadas<br><span style="color:var(--green)">Core:</span> Side plank · Mountain climbers</div>
+          <div class="day-detail">Sentadilla · Peso muerto · Prensa · Zancadas<br><span style="color:var(--green)">Core:</span> Side plank · Mountain climbers</div>
         </div>
       </div>
-      <div class="day-row">
+      <div class="day-row" data-day="6">
         <div class="day-tag c-green">SÁB</div>
         <div class="day-content">
           <div class="day-type">⚽ Fútbol o Circuito</div>
           <div class="day-detail">Partido <strong>o</strong> 3 rondas: 15 burpees + 20 sentadillas + 15 push-ups + 30s plancha</div>
         </div>
       </div>
-      <div class="day-row">
+      <div class="day-row" data-day="0">
         <div class="day-tag" style="color:var(--muted)">DOM</div>
         <div class="day-content">
           <div class="day-type" style="color:var(--muted)">Descanso total</div>
-          <div class="day-detail">Recuperación, sueño, hidratación</div>
+          <div class="day-detail">Recuperación, preparar comidas, hidratación</div>
         </div>
       </div>
     </div>
-
-    <div class="sec-eyebrow">2× por semana</div>
-    <h3 style="font-family:'Bebas Neue',sans-serif;font-size:26px;color:#fff;letter-spacing:0.03em;margin-bottom:12px">RUTINA DE CORE</h3>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr><th>Ejercicio</th><th>Series</th><th>Zona</th></tr></thead>
-        <tbody>
-          <tr><td class="td-b">Plancha frontal</td><td>3 × 45–60s</td><td><span class="pill p-g">Estabilidad</span></td></tr>
-          <tr><td class="td-b">Ab wheel</td><td>3 × 10–12</td><td><span class="pill p-o">Recto abd.</span></td></tr>
-          <tr><td class="td-b">Leg raises</td><td>3 × 12–15</td><td><span class="pill p-g">Abd. bajo</span></td></tr>
-          <tr><td class="td-b">Side plank</td><td>2 × 30s</td><td><span class="pill p-b">Oblicuos</span></td></tr>
-          <tr><td class="td-b">Dead bug</td><td>3 × 10</td><td><span class="pill p-g">Core profundo</span></td></tr>
-          <tr><td class="td-b">Mountain climbers</td><td>3 × 20s</td><td><span class="pill p-o">Cardio+core</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="tip r">El abdomen lo revela el déficit calórico. El core lo fortalece. La dieta elimina la grasa — no los abdominales.</div>
   </div>
 
   <!-- ── PROGRESO ── -->
   <div class="page" id="page-progreso">
-    <div class="sec-eyebrow">Cada semana</div>
-    <h2 class="sec-h">MIDE TU AVANCE</h2>
-
-    <div class="stat-row">
-      <div class="card"><div class="card-lbl">Báscula</div><div style="font-size:13px;color:var(--muted);margin-top:4px;line-height:1.5">Lunes en ayunas, misma hora, sin ropa.</div></div>
-      <div class="card"><div class="card-lbl">Fotos</div><div style="font-size:13px;color:var(--muted);margin-top:4px;line-height:1.5">Frente, lateral, espalda. Misma luz.</div></div>
-    </div>
-
-    <div class="card" style="margin-bottom:16px">
-      <div class="card-lbl" style="margin-bottom:8px">Medidas cada 2 semanas</div>
-      <ul class="cklist">
-        <li>Cintura al nivel del ombligo</li>
-        <li>Cadera en el punto más ancho</li>
-        <li>Pecho cruzando los pezones</li>
-        <li>Bíceps contraído</li>
-        <li>Muslo en la parte más gruesa</li>
+    <div class="sec-eyebrow">Bitácora Personal</div>
+    <h2 class="sec-h">REGISTRO DE PESO</h2>
+    
+    <div class="card">
+      <div class="tracker-input">
+        <input type="number" id="weightInput" placeholder="Ej. 83.5" step="0.1">
+        <button onclick="saveWeight()">Guardar kg</button>
+      </div>
+      <ul id="weight-list">
+        <!-- El historial se carga aquí -->
       </ul>
     </div>
 
-    <div class="sec-eyebrow">Qué esperar</div>
-    <h3 style="font-family:'Bebas Neue',sans-serif;font-size:26px;color:#fff;letter-spacing:0.03em;margin-bottom:12px">LÍNEA DE TIEMPO</h3>
-    <div class="week-grid">
-      <div class="week-card"><div class="week-num">SEM 1–2</div><div class="week-title">Inicio</div><div class="week-desc">−1 a 2 kg (agua). Más energía y claridad.</div></div>
-      <div class="week-card"><div class="week-num">SEM 3–4</div><div class="week-title">Primeros cambios</div><div class="week-desc">Cintura −1–2 cm. Ropa más holgada.</div></div>
-      <div class="week-card"><div class="week-num">SEM 5–8</div><div class="week-title">Definición</div><div class="week-desc">Músculos más marcados. Cambios claros.</div></div>
-      <div class="week-card"><div class="week-num">SEM 8–12</div><div class="week-title">Abdomen plano</div><div class="week-desc">Core visible. Inicio de definición real.</div></div>
+    <div class="sec-eyebrow" style="margin-top:20px">Cada 2 semanas</div>
+    <h2 class="sec-h">MEDIDAS Y FOTOS</h2>
+    <div class="card">
+      <ul class="interactive-list" style="margin-bottom:0;" id="measuresList">
+        <li><input type="checkbox" id="med1"> <span>Me tomé foto (frente, lateral, espalda)</span></li>
+        <li><input type="checkbox" id="med2"> <span>Medí mi cintura al nivel del ombligo</span></li>
+      </ul>
     </div>
-
-    <div class="tip">Si en 3 semanas no hay cambio en cintura ni en fotos, reduce 100 kcal/día. El peso puede estancarse — lo que manda es la cintura y el espejo.</div>
+    <div class="tip o">El peso puede estancarse, lo que manda es la cinta métrica en la cintura y el espejo.</div>
   </div>
 
   <!-- ── ANTOJITOS ── -->
   <div class="page" id="page-antojitos">
-    <div class="sec-eyebrow">Come lo que te gusta</div>
-    <h2 class="sec-h">SIN ARRUINAR EL PLAN</h2>
+    <div class="sec-eyebrow">Come inteligente</div>
+    <h2 class="sec-h">GUÍA DE COMIDA LIBRE</h2>
+    <div class="tip o" style="margin-bottom:16px">Si comes fuera una vez, las otras comidas del día deben ser súper limpias y altas en proteína.</div>
 
-    <div class="tip o" style="margin-bottom:16px">Si comes fuera una vez, las otras comidas del día deben ser proteicas y limpias. No se arruina una semana por una comida.</div>
-
-    <div class="antojo-card">
-      <div class="antojo-head"><div class="antojo-name">🌮 Tacos</div><span class="pill p-g">−200 kcal</span></div>
-      <div class="antojo-body">3 tacos de tinga/pollo/barbacoa en tortilla de maíz. Sin crema, sin queso extra. Agrega salsa y cebolla.</div>
-    </div>
-    <div class="antojo-card">
-      <div class="antojo-head"><div class="antojo-name">🍔 Hamburguesa</div><span class="pill p-g">−350 kcal</span></div>
-      <div class="antojo-body">Sin queso doble. Ensalada en lugar de papas. Pide agua en lugar de refresco — ahorras 200 kcal de golpe.</div>
-    </div>
-    <div class="antojo-card">
-      <div class="antojo-head"><div class="antojo-name">🍕 Pizza</div><span class="pill p-o">−300 kcal</span></div>
-      <div class="antojo-body">Máx 2 rebanadas, base delgada, sin doble queso. Come pizza en día de entreno para usar bien los carbos.</div>
-    </div>
-    <div class="antojo-card">
-      <div class="antojo-head"><div class="antojo-name">🍣 Sushi</div><span class="pill p-g">−250 kcal</span></div>
-      <div class="antojo-body">8–10 piezas nigiri o sashimi. Evita rolls con crema o tempura. El sashimi es proteína pura — perfecto.</div>
-    </div>
-    <div class="antojo-card">
-      <div class="antojo-head"><div class="antojo-name">🌯 Burrito / Torta</div><span class="pill p-o">−200 kcal</span></div>
-      <div class="antojo-body">Elige pechuga, atún o frijoles. Sin mayonesa ni crema. Mitad del pan si viene muy cargado.</div>
-    </div>
-
-    <div class="tip" style="margin-top:4px">
-      <strong>Mentalidad clave:</strong> el déficit es semanal, no diario. Si un día comes de más, el siguiente comes un poco menos. El promedio de la semana es lo que importa.
-    </div>
+    <div class="antojo-card"><div class="antojo-head"><div class="antojo-name">🌮 Tacos</div><span class="pill p-g">OK</span></div><div class="antojo-body">3 de tinga/pollo/bistec en maíz. Sin crema, sin queso extra.</div></div>
+    <div class="antojo-card"><div class="antojo-head"><div class="antojo-name">🍔 Hamburguesa</div><span class="pill p-o">Precaución</span></div><div class="antojo-body">Sin queso doble. Pide ensalada en lugar de papas, ahorras 300 kcal.</div></div>
+    <div class="antojo-card"><div class="antojo-head"><div class="antojo-name">🍕 Pizza</div><span class="pill p-o">Precaución</span></div><div class="antojo-body">Máx 2 rebanadas, base delgada. Cómetelas en día de entrenamiento pesado.</div></div>
+    <div class="antojo-card"><div class="antojo-head"><div class="antojo-name">🍣 Sushi</div><span class="pill p-g">Excelente</span></div><div class="antojo-body">8–10 piezas nigiri o sashimi. Evita empanizados y queso crema.</div></div>
   </div>
 
 </main>
 
 <!-- BOTTOM NAV -->
 <nav class="bottom-nav">
-  <button class="bnav-item active" onclick="showPage('home',this)">
-    <span class="bnav-icon">🏠</span>
-    <span class="bnav-lbl">Inicio</span>
-  </button>
-  <button class="bnav-item" onclick="showPage('nutri',this)">
-    <span class="bnav-icon">🥩</span>
-    <span class="bnav-lbl">Nutrición</span>
-  </button>
-  <button class="bnav-item" onclick="showPage('entreno',this)">
-    <span class="bnav-icon">🏋️</span>
-    <span class="bnav-lbl">Entreno</span>
-  </button>
-  <button class="bnav-item" onclick="showPage('progreso',this)">
-    <span class="bnav-icon">📏</span>
-    <span class="bnav-lbl">Progreso</span>
-  </button>
-  <button class="bnav-item" onclick="showPage('antojitos',this)">
-    <span class="bnav-icon">🌮</span>
-    <span class="bnav-lbl">Antojitos</span>
-  </button>
+  <button class="bnav-item active" onclick="showPage('home',this)"><span class="bnav-icon">🏠</span><span class="bnav-lbl">Inicio</span></button>
+  <button class="bnav-item" onclick="showPage('nutri',this)"><span class="bnav-icon">🥩</span><span class="bnav-lbl">Nutrición</span></button>
+  <button class="bnav-item" onclick="showPage('entreno',this)"><span class="bnav-icon">🏋️</span><span class="bnav-lbl">Entreno</span></button>
+  <button class="bnav-item" onclick="showPage('progreso',this)"><span class="bnav-icon">📉</span><span class="bnav-lbl">Progreso</span></button>
+  <button class="bnav-item" onclick="showPage('antojitos',this)"><span class="bnav-icon">🌮</span><span class="bnav-lbl">Antojitos</span></button>
 </nav>
 
 <script>
+// Navegación de pestañas
 function showPage(id, el) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.bnav-item').forEach(b => b.classList.remove('active'));
@@ -529,6 +370,77 @@ function showPage(id, el) {
   el.classList.add('active');
   document.getElementById('scrollArea').scrollTop = 0;
 }
+
+// 1. MODO CLARO/OSCURO
+function toggleTheme() {
+  const body = document.body;
+  const icon = document.getElementById('themeIcon');
+  body.classList.toggle('light-mode');
+  if (body.classList.contains('light-mode')) {
+    icon.innerText = '🌙';
+    localStorage.setItem('theme', 'light');
+  } else {
+    icon.innerText = '☀️';
+    localStorage.setItem('theme', 'dark');
+  }
+}
+if (localStorage.getItem('theme') === 'light') toggleTheme();
+
+// 2. RESALTADO DEL DÍA ACTUAL
+const currentDayNumber = new Date().getDay(); 
+const dayRows = document.querySelectorAll('.day-row');
+dayRows.forEach(row => {
+  if (parseInt(row.getAttribute('data-day')) === currentDayNumber) {
+    row.classList.add('current-day');
+  }
+});
+
+// 3. CHECKLISTS INTERACTIVOS
+document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+  const isChecked = localStorage.getItem(checkbox.id) === 'true';
+  checkbox.checked = isChecked;
+  if(isChecked) checkbox.parentElement.classList.add('checked');
+
+  checkbox.addEventListener('change', function() {
+    localStorage.setItem(this.id, this.checked);
+    if(this.checked) {
+      this.parentElement.classList.add('checked');
+    } else {
+      this.parentElement.classList.remove('checked');
+    }
+  });
+});
+
+// 4. REGISTRO DE PESO
+let weights = JSON.parse(localStorage.getItem('paulo_weights')) || [];
+
+function saveWeight() {
+  const input = document.getElementById('weightInput');
+  if (!input.value) return;
+  const dateObj = new Date();
+  const dateStr = dateObj.getDate() + '/' + (dateObj.getMonth()+1) + '/' + dateObj.getFullYear();
+  weights.unshift({ date: dateStr, value: input.value });
+  localStorage.setItem('paulo_weights', JSON.stringify(weights));
+  input.value = '';
+  renderWeights();
+}
+
+function deleteWeight(index) {
+  weights.splice(index, 1);
+  localStorage.setItem('paulo_weights', JSON.stringify(weights));
+  renderWeights();
+}
+
+function renderWeights() {
+  const list = document.getElementById('weight-list');
+  list.innerHTML = '';
+  weights.forEach((w, index) => {
+    const li = document.createElement('li');
+    li.innerHTML = `<span>📅 ${w.date} &nbsp; <strong>${w.value} kg</strong></span> <button class="del-btn" onclick="deleteWeight(${index})">X</button>`;
+    list.appendChild(li);
+  });
+}
+renderWeights();
 </script>
 </body>
 </html>
