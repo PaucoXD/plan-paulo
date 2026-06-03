@@ -1,4 +1,4 @@
-const CACHE_NAME = 'paulo-plan-v4';
+const CACHE_NAME = 'paulo-plan-v1';
 
 const APP_SHELL = [
   './',
